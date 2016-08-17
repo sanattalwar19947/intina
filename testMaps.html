@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>
+			YOLO
+		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script type="text/javascript">
+		var dataUse= {
+   "destination_addresses" : [
+      "Thengaithittu Main Rd, Vasantha Nagar, Nainar Mandapam, Thengaithittu, Puducherry, 605004, India"
+   ],
+   "origin_addresses" : [ "49, Sydenhams Rd, Park Town, Chennai, Tamil Nadu 600003, India" ],
+   "rows" : [
+      {
+         "elements" : [
+            {
+               "distance" : {
+                  "text" : "171 km",
+                  "value" : 170812
+               },
+               "duration" : {
+                  "text" : "3 hours 14 mins",
+                  "value" : 11617
+               },
+               "status" : "OK"
+            }
+         ]
+      }
+   ],
+   "status" : "OK"
+};
+		//Values already in json Array so no need of array 
+		var obj =dataUse;
+//alert(obj.rows[0].elements[0].distance.text);
+var a=obj.rows[0].elements[0].distance.text;
+
+
+
+
+$(document).ready(function(){
+    // source latittude 
+    var sla=13.082680;
+    var slo=80.270718;
+    // destination  longitutde 
+    var dla=11.913860;
+    var dlo=79.814472;
+
+    var url="https://maps.googleapis.com/maps/api/distancematrix/json?origins="+sla+","+slo+"&destinations="+dla+","+dlo+"&key=AIzaSyC4n_boeUlp05JQNK2i_T7kJP2-mIcHNQc";
+    // we'll store the search term here
+    var query;
+    
+    // when the user clicks the button
+    $("button").click(function(){
+    	document.getElementById("results").innerHTML=a;
+          // get value in the search box and store it in the variable
+          query=$("#query").val();
+          // get the json file
+          if (query=="W1")
+          {
+          	alert("test");
+          }
+          $.getJSON(url,function(json){
+    // this is where we can loop through the results in the json object
+    $.each(json.results, function(i,dist){
+     // this is where we do what we want with the dist value
+     $("#results").append('<h2>'+ dist.rows[0].elements[0].distance.text+'asd'+'</h2>');
+});
+});
+    });
+});
+
+
+		
+
+function ater(){
+document.getElementById("results").innerHTML=a;
+
+return true;
+}
+
+	</script>
+	</head>
+	<body>
+		<h1>VZ HACKS</h1>
+		
+		<input type="text" id="query" />
+		<button onClick="return ater()">PING GOOGLE MAP API</button>
+		
+<div id="results"></div>
+	</body>
+</html>
