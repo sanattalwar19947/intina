@@ -1,0 +1,64 @@
+create table customers(
+customer_name varchar2(40) not null,
+customer_id number(10) primary key,
+username varchar2(30) unique not null,
+pwd varchar2(16) not null,
+phone_number number(10) unique not null,
+address varchar2(100) not null,
+fios_internet varchar2(10) check(fios_internet in('YES','NO')),
+dsl_internet varchar2(10) check(dsl_internet in('YES','NO')),
+home_phone varchar2(10) check(home_phone in('YES','NO')),
+mobile_service varchar2(10) check(mobile_service in('YES','NO'))
+);
+
+
+create table technician(
+tech_name varchar2(40) not null,
+tech_id number(10) primary key,
+warehouse_no number(4) unique not null,
+phone_no number(10) unique not null
+);
+
+create table tech_status(
+tech_id number(10),
+customer_id number(10),
+latitude number(5,5),
+longitude number(5,5),
+free varchar2(10) check(free in('YES','NO')),
+on_the_way varchar2(10) check(on_the_way in('YES','NO')),
+at_work varchar2(10) check(at_work in('YES','NO')),
+constraint fk_tech_id foreign key(tech_id) references technician(tech_id),
+constraint fk_customer_id foreign key(customer_id) references customers(customer_id)
+);
+
+
+
+create table complaint(
+complaint_id number(10) primary key,
+customer_id number(10),
+repair_type varchar2(7) check(repair_type in('FIOS','DSL','HOME_PHONE','MOBILE')),
+new_connection_type varchar2(7) check(new_connection_type in('FIOS','DSL','HOME_PHONE','MOBILE')),
+constraint fk_cust_id foreign key(customer_id) references customers(customer_id)
+);
+
+
+insert into customers values('Swetha',cust_sequence.nextval,'swe12','swetha',9867231256,'8,Jogi Vihar,Madipakkam,Chennai-600008','YES','NO','NO','YES');
+
+select * from customers;
+
+create sequence cust_sequence
+start with 1
+increment by 1
+maxvalue 10000
+
+
+
+create sequence tech_sequence
+start with 1
+increment by 1
+maxvalue 10000
+
+create sequence comp_sequence
+start with 1
+increment by 1
+maxvalue 10000
