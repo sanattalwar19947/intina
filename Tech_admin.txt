@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%@ page language="java" import="java.sql.*" %>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Customer Details</a>
+                </li>
+                <li>
+                    <a href="techDetails.jsp">Technician Details</a>
+                </li>
+                <li>
+                    <a href="#">New Connection</a>
+                </li>
+                <li>
+                    <a href="#">Repairs</a>
+                </li>
+                <li>
+                    <a href="#">Suggestion</a>
+                </li>
+                <li>
+                    <a href="#">Complains</a>
+                </li>
+                <li>
+                    <a href="#">Truck Details</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                
+                <%
+ResultSet rs;
+	try{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection con=DriverManager.getConnection
+				("jdbc:oracle:thin:@localhost:1521:xe","sys","admin@123");
+		System.out.println("connected");
+		Statement st=con.createStatement();
+		rs=st.executeQuery("select * from Technician");
+		%>
+		
+		<table border="1" cellspacing="0" cellpadding="0">
+			<tr>
+				<td><b>Technician name</b></td>
+				<td><b>Technician id</b></td>
+				<td><b>Warehouse Number</b></td>
+				<td><b>Phone Number</b></td>
+			</tr>
+			
+			<%
+			while(rst.next()){
+			%>
+			<tr>
+			<td><b>
+			<%=
+			rs.getString("Tech_Name")
+			 %>
+			</b></td>
+			</tr>
+            <tr>
+			<td><b>
+			<%=
+			rs.getString("Tech_Id")
+			 %>
+			</b></td>
+			</tr>
+            <tr>
+			<td><b>
+			<%=
+			rs.getString("Warehouse_No")
+			 %>
+			</b></td>
+			</tr>
+            <tr>
+			<td><b>
+			<%=
+			rs.getString("Phone_No")
+			 %>
+			</b></td>
+			</tr>
+                  <%}%>  
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+<%}
+	catch(Exception e){
+		System.out.println(e.getMessage());
+	}
+	%>
+</body>
+
+</html>
