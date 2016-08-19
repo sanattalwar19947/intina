@@ -1,81 +1,232 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title></title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-		<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-		<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-		<script type="text/javascript" src="js/jquery-1.6.js" ></script>
-		<script type="text/javascript" src="js/cufon-yui.js"></script>
-		<script type="text/javascript" src="js/cufon-replace.js"></script>  
-		<script type="text/javascript" src="js/Vegur_300.font.js"></script>
-		<script type="text/javascript" src="js/PT_Sans_700.font.js"></script>
-		<script type="text/javascript" src="js/PT_Sans_400.font.js"></script>
-		<script type="text/javascript" src="js/atooltip.jquery.js"></script>
-		<!--[if lt IE 9]>
-		<script type="text/javascript" src="js/html5.js"></script>
-		<link rel="stylesheet" href="css/ie.css" type="text/css" media="all">
-		<![endif]-->
-		<!--[if lt IE 7]>
-			<div style=' clear: both; text-align:center; position: relative;'>
-				<a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a>
-			</div>
-		<![endif]-->
 
-	</head>
-	<body id="page3">
-		<div class="main">
-<!--header -->
-			<header>
-				<div class="wrapper">
-					<h1><a href="index.html" id="logo">Verizon</a></h1>
-					<form id="search" method="post">
-						<fieldset>
-							<div class="bg"><input class="input" type="text" value="Search"  onblur="if(this.value=='') this.value='Search'" onFocus="if(this.value =='Search' ) this.value=''" ></div>
-						</fieldset>
-					</form>
-				</div>
-				<nav>
-					<ul id="menu">
-						<li><a href="index.html"><span>Homepage</span></a></li>
-						<li><a href="Company.html"><span>Company</span></a></li>
-						<li><a href="Services.html"><span>Products</span></a></li>
-						<li class="active"><a href="Solutions.html"><span>Login</span></a></li>
-						<li class="last"><a href="Contacts.html"><span>Contacts</span></a></li>
-					</ul>
-				</nav>
-			</header>
-			<article id="solution"><div class="ic">More Website Templates @ TemplateMonster.com - November 14, 2011!</div>
-				<div class="wrapper">
-					<h2>Account + Services</h2>
-					<div class="col1 marg_right1">
-						<div class="wrapper">
-							<figure class="left marg_right2"><img src="images/page3_img1.jpg" alt=""></figure>
-							<p><span class="color1">Account + Services</span><br>
-								Review & pay your bill, sign up for paper free auto-pay services, see offers and more.</p>
-						</div>
-						<div class="wrapper">
-							<figure class="left marg_right2"><img src="images/page3_img2.jpg" alt=""></figure>
-							<p><span class="color1">Emailt</span><br>
-									Check your email, keep track of your contacts and manage your calendar all in one place.</p>
-						</div>
-					</div>
-					<div class="col1 marg_right1">
-						<div class="wrapper">
-							<figure class="left marg_right2"><img src="images/page3_img3.jpg" alt=""></figure>
-							<p><span class="color1">Deals</span><br>
-							Check out our latest upgrade   offers and deals.</p>
-						</div>
-						
-					</div>
-				</div>
-				<h3>
-				<a href="newform.html">Click to Login or Sign Up</a> </h3>
-			</article>
-			
-			
-			
-	
-	</body>
+<%@page import="try_admin.ToConnect"%>
+
+<%@page import="try_admin.Customer" %>
+<%@ page language="java" import="java.sql.*" %>
+<%@ page language="java" import="java.util.*" %>
+<%@ page language="java" import="java.io.*" %>
+<%@ page language="java" import="com.servlets.*" %>
+<%@ page language="java" import="com.vz.test.*" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="customerDetails.jsp">Customer Details</a>
+                </li>
+                <li>
+                    <a href="tech_details.jsp">Technician Details</a>
+                </li>
+                <li>
+                    <a href="complaints.jsp">Complaints Registered</a>
+                </li>
+                <li>
+                    <a href="#">Repairs</a>
+                </li>
+                <li>
+                    <a href="Solutions.jsp">Solutions</a>
+                </li>
+                <li>
+                    <a href="#">Complains and Suggestions</a>
+                </li>
+                <li>
+                    <a href="charts.jsp">Charts</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                <h1>The following are the solutions provided for the month January</h1>
+          				
+  			<% 
+  			Connection con;
+  			PreparedStatement pst;
+  			double requests;
+  			double served;
+  			double misses;
+  			double efficiency;
+  			String warehouse_no;
+  			double occup;
+  			double fr;
+  			double ot;
+  			HashMap<String, String> miss = new HashMap<String, String>();
+  			HashMap<String, Double> req = new HashMap<String, Double>();
+  			HashMap<String, Double> serve = new HashMap<String, Double>();
+  			HashMap<String, Double> missed = new HashMap<String, Double>();
+  			HashMap<String, Double> occupied = new HashMap<String, Double>();
+  			HashMap<String, Double> free = new HashMap<String, Double>();
+  			HashMap<String, Double> otw = new HashMap<String, Double>();
+  			final double freeThreshold=8.0;
+  			final  double persons = 5.0;
+  			final  double TotalWorkingHours = 9.0;
+  			
+  			
+  			ConnectionGetter cg=new ConnectionGetter();
+  			con=cg.getConnection();
+  			//Analysis an=new Analysis();
+  			//		try{
+  			 //out = response.getWriter();
+  				// Comparing efficeiency and finding out the value
+  				
+  			try {
+  				pst=con.prepareStatement("select warehouse_no,avg_req,avg_served,eff from monthlyreport");
+  				ResultSet rs=pst.executeQuery();
+  				while(rs.next())
+  				{
+  					requests=rs.getDouble(2);
+  					served=rs.getDouble(3);
+  					warehouse_no=rs.getString(1);
+  					efficiency=rs.getDouble(4);
+  					System.out.println(efficiency);
+  					miss.put(warehouse_no, Double.toString(efficiency));
+  					req.put(warehouse_no, requests);
+  					serve.put(warehouse_no, served);
+  					missed.put(warehouse_no, (requests-served));
+  					// miss.put("W2", arg1);
+  					// miss.put("W3", arg1);
+  					// miss.put("W4", arg1);
+  					// miss.put("W5", arg1);
+
+  					
+  				}
+  				pst=con.prepareStatement("select warehouse_no,occupied,free,otw from technician_avg_status");
+  				ResultSet rs1=pst.executeQuery();
+  				while(rs1.next())
+  				{
+  					
+  							
+  					occupied.put(rs1.getString(1),rs1.getDouble(2));
+  					free.put(rs1.getString(1), rs1.getDouble(3));
+  					otw.put(rs1.getString(1), rs1.getDouble(4));
+  					
+  				}
+  				
+  			} catch (SQLException e) {
+  				// TODO Auto-generated catch block
+  				e.printStackTrace();
+  			}
+  			
+//  			for (String name: missed.keySet()){
+  	//
+//  	            String key =name.toString();
+//  	            String value = missed.get(name).toString();  
+//  	            out.println(key + " " + value);  
+  	//} 
+
+  			for (String name: free.keySet()){
+
+  	            String key =name.toString();
+  	            String value = free.get(name).toString(); 
+  	            if((free.get(name))/30.0<freeThreshold)
+  	            {
+  	    			double o1 =occupied.get(name) ;
+  	    			double otw1 =otw.get(name) ;
+  	    			
+
+
+  	    				//case1A(req.get(name),missed.get(name),name);
+  	    				double totalMen = persons;
+  	    				double menRequired = ((totalMen / req.get(name)) * missed.get(name));
+  	    				%>
+  	          			<h3>Total number of men recommended <%= Math.ceil(menRequired)%> at warehouse <%=name %></h3> <br/> <br/>
+  	    				
+
+  	    			<%
+  	    			if (Analysis.checkOTWHours(otw1)) {
+  	    				%>
+<%
+  	    				if (otw1 > o1) {
+  	    			%>
+  	    				
+  	    					<h>Warehouse <%=name %> overloaded!! More warehouses needed because techies are busy in travelling to long distant nodes</h> <br/> <br/>
+					<% 
+  	    			}
+  	            }
+  	            }
+  	            else if((free.get(name))/30.0>freeThreshold)
+  	            {
+  	            	//Analysis.optimise(free.get(name),out,name);
+  	            	double freeTimePerDay = free.get(name) / 30;
+				if (freeTimePerDay > 8) {
+				double resultingAlpha = (double) (freeTimePerDay / (TotalWorkingHours - 1.0));
+				%>
+			<h3>Number of personnels to be sent to other warehouses from warehouse <%=name %>  are 
+							<%=Math.floor(resultingAlpha) %> </h3>
+				<% 
+  	            }
+  	            //out.println(key + " " + value);  
+  	           } 
+  			}
+  			
+  			
+  			%>
+          		
+          		    
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
 </html>
